@@ -1,0 +1,57 @@
+<head>
+  <title>instant-pooling</title>
+</head>
+
+<body>
+	<div class="container">
+		{{> header}}
+		{{> ideasList}}
+		
+		{{>newIdea}}
+	</div>
+</body>
+
+<template name="header">
+  <h2>Idea Voting System</h2>
+  <hr/>
+  {{ > loginButtons}}
+  <hr/>
+</template>
+
+<template name="ideasList">
+	<ul>
+		{{#each ideas}} 
+		<li>
+			<b>
+				{{title}}
+			</b> by {{idea_by}} ({{votes}} votes done)
+			{{#if currentUser}}
+			<input type="button" class="upvote btn btn-default " value="Upvote"/>
+			<input type="button" class="downvote btn btn-default" value="Downvote"/>
+			{{/if}}
+		</li>
+		{{/each}}
+	</ul>
+</template>
+<template name="newIdea">
+<hr/>
+
+	{{#if currentUser}}
+	<form role="form" class="form form-inline newIdeaForm">
+		 
+		<div class="form-group">
+			<label for="inputdefault">Title:</label>
+			<input class="title form-control" id="inputdefault" type="text">
+		</div>
+		
+		<br/>
+		<div class="form-group">
+			<label for="inputdefault">Idea By</label>
+			<input class="idea_by form-control" id="inputdefault" type="text">
+		</div>
+  
+		<br/>
+		<input type="submit" value="Add" />
+	</form>
+	{{/if}}
+</template>
